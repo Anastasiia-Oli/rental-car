@@ -1,0 +1,39 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 120px;
+  padding-right: 120px;
+}
+
+.logo {
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+.navigation {
+  display: flex;
+  list-style-type: none;
+  gap: 32px;
+}
+
+.navigation li a:hover {
+  color: var(--button-hover);
+}
+
+.active {
+  color: var(--button);
+  text-decoration: underline;
+  display: flex;
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+.li {
+}
+
+.link {
+  display: flex;
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
