@@ -1,9 +1,27 @@
 .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 800;
+  width: 100vw;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-left: 120px;
   padding-right: 120px;
+  border-bottom: 1px solid var(--badges);
+  background-color: var(--white);
+
+  transition: transform 250ms ease;
+}
+
+.headerHidden {
+  transform: translateY(-100%);
+}
+
+.headerVisible {
+  transform: translateY(0);
 }
 
 .logo {
@@ -36,4 +54,6 @@
   display: flex;
   padding-top: 24px;
   padding-bottom: 24px;
+
+  transition: color 250ms ease;
 }
