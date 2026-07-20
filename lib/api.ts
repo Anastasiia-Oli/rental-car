@@ -3,7 +3,7 @@ import type { Car, CarBrand } from '@/types/car';
 
 const BASE_URL = 'https://car-rental-api.goit.study';
 
-export interface GetBrandsResponse {
+export interface FiltersResponse {
   brands: CarBrand[];
   price: {
     min: number;
@@ -19,7 +19,7 @@ export interface FetchCarsResponse {
   perPage: number;
 }
 
-export async function getBrands(): Promise<GetBrandsResponse> {
-  const response = await axios.get<GetBrandsResponse>(`${BASE_URL}/filters`);
+export async function getFilters(): Promise<FiltersResponse> {
+  const response = await axios.get<FiltersResponse>(`${BASE_URL}/filters`);
   return response.data;
 }
