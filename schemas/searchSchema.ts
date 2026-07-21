@@ -10,10 +10,10 @@ const mileageField = z
 
 export const searchSchema = z
   .object({
-    brand: z.string().default(''),
-    price: z.string().default(''),
-    minMileage: mileageField.default(''),
-    maxMileage: mileageField.default(''),
+    brand: z.string(),
+    price: z.string(),
+    minMileage: mileageField,
+    maxMileage: mileageField,
   })
   .refine(
     data => {

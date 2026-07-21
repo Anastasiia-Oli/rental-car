@@ -56,18 +56,72 @@ function Searchbar({ onSearch }: SearchBarProps) {
 
   return (
     <form className={css.form} onSubmit={handleSubmit(onSubmit)} noValidate>
-      <label>
+      <label className={css.field}>
         Car brand
-        <select name="brand" value={filters.brand} onChange={handleChange}>
+        <select
+          className={css.select}
+          disabled={isLoading}
+          {...register('brand')}
+        >
           <option value="">Choose a brand</option>
 
-          {brands?.map(brand => (
+          {filtersData?.brands.map(brand => (
             <option key={brand} value={brand}>
               {brand}
             </option>
           ))}
         </select>
       </label>
+
+      <label className={css.field}>
+        <select
+          className={css.select}
+          disabled={isLoading}
+          {...register('price')}
+        >
+          <option value="">Price/1 hour</option>
+          {priceOptions.map(price => (
+            <option key={price} value={price}>
+              To ${price}
+            </option>
+          ))}
+        </select>
+      </label>
+
+      <label className={css.mileageGroup}>
+        <span className={css.mileageLabel}>Mileage from</span>
+        <input
+          className={css.mileageInput}
+          type="text"
+          inputMode="numeric"
+          placeholder="From"
+          {...register('minMileage')}
+        />
+
+        <span className={css.mileageLabel}>To</span>
+        <input
+          className={css.mileageInput}
+          type="text"
+          inputMode="numeric"
+          placeholder="To"
+          {...register('maxMileage')}
+        />
+      </label>
+
+      {(errors.minMileage || errors.maxMileage) && (
+        <p className={css.error}>
+          {errors.maxMileage?.message ?? errors.minMileage?.message}
+        </p>
+      )}
+
+      <div className={css.actions}>
+        <button type="submit" className={css.searchButton}>
+          Search
+        </button>
+        <button type="button" className={css.clearButton} onClick={handleClear}>
+          Clear filters
+        </button>
+      </div>
     </form>
   );
 }
