@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Searchbar from '@/components/Searchbar/Searchbar';
 import { getCars, getFilters } from '@/lib/api';
 import type { CarFilters } from '@/types/filters.types';
+import css from './page.module.css';
 
 interface CatalogPageProps {
   searchParams: Promise<{
@@ -32,8 +33,7 @@ async function CatalogPage({ searchParams }: CatalogPageProps) {
   ]);
 
   return (
-    <div>
-      Catalog
+    <div className={css.container}>
       <Searchbar filtersData={filtersData} />
     </div>
   );

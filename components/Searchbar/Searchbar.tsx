@@ -13,7 +13,7 @@ import {
 } from '@/schemas/searchSchema';
 import { buildPriceOptions } from '@/utils/mapSearchValues';
 import type { FiltersResponse } from '@/types/filters.types';
-import css from './SearchBar.module.css';
+import css from './Searchbar.module.css';
 
 interface SearchBarProps {
   filtersData: FiltersResponse;
@@ -77,8 +77,9 @@ function Searchbar({ filtersData }: SearchBarProps) {
       </label>
 
       <label className={css.field}>
+        Price / 1 hour
         <select className={css.select} {...register('price')}>
-          <option value="">Price/1 hour</option>
+          <option value="">Choose a price</option>
           {priceOptions.map(price => (
             <option key={price} value={price}>
               To ${price}
@@ -88,23 +89,23 @@ function Searchbar({ filtersData }: SearchBarProps) {
       </label>
 
       <label className={css.mileageGroup}>
-        <span className={css.mileageLabel}>Mileage from</span>
-        <input
-          className={css.mileageInput}
-          type="text"
-          inputMode="numeric"
-          placeholder="From"
-          {...register('minMileage')}
-        />
-
-        <span className={css.mileageLabel}>To</span>
-        <input
-          className={css.mileageInput}
-          type="text"
-          inputMode="numeric"
-          placeholder="To"
-          {...register('maxMileage')}
-        />
+        Car mileage / km
+        <div className={css.mileageContainer}>
+          <input
+            className={css.mileageInputFrom}
+            type="text"
+            inputMode="numeric"
+            placeholder="From"
+            {...register('minMileage')}
+          />
+          <input
+            className={css.mileageInputTo}
+            type="text"
+            inputMode="numeric"
+            placeholder="To"
+            {...register('maxMileage')}
+          />
+        </div>
       </label>
 
       {(errors.minMileage || errors.maxMileage) && (
