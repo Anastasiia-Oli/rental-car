@@ -4,25 +4,26 @@ import { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQuery } from '@tanstack/react-query';
+import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 
 import {
   searchSchema,
   defaultSearchValues,
   type SearchSchemaType,
 } from '@/schemas/searchSchema';
-import { getFilters } from '@/lib/api';
-import {
-  mapSearchValuesToCarFilters,
-  buildPriceOptions,
-} from '@/utils/mapSearchValues';
-import type { CarFilters } from '@/types/filters.types';
+import { buildPriceOptions } from '@/utils/mapSearchValues';
+import type { FiltersResponse } from '@/types/filters.types';
 import css from './SearchBar.module.css';
 
 interface SearchBarProps {
-  onSearch: (filters: CarFilters) => void;
+  filtersData: FiltersResponse;
 }
 
-function Searchbar({ onSearch }: SearchBarProps) {
+function Searchbar({ filtersData }: SearchBarProps) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
   const {
     register,
     handleSubmit,
@@ -30,39 +31,41 @@ function Searchbar({ onSearch }: SearchBarProps) {
     formState: { errors },
   } = useForm<SearchSchemaType>({
     resolver: zodResolver(searchSchema),
-    defaultValues: defaultSearchValues,
-    mode: 'onSubmit',
+    defaultValues: {
+      brand: searchParams.get('brand') ?? '',
+      price: searchParams.get('price') ?? '',
+      minMileage: searchParams.get('minMileage') ?? '',
+      maxMileage: searchParams.get('maxMileage') ?? '',
+    },
   });
 
-  const { data: filtersData, isLoading } = useQuery({
-    queryKey: ['filters'],
-    queryFn: getFilters,
-  });
-
-  const priceOptions = useMemo(() => {
-    if (!filtersData?.price) return [];
-    return buildPriceOptions(filtersData.price.min, filtersData.price.max, 10);
-  }, [filtersData]);
+  const priceOptions = useMemo(
+    () => buildPriceOptions(filtersData.price.min, filtersData.price.max, 10),
+    [filtersData]
+  );
 
   const onSubmit = (values: SearchSchemaType) => {
-    onSearch(mapSearchValuesToCarFilters(values));
+    const params = new URLSearchParams();
+
+    if (values.brand) params.set('brand', values.brand);
+    if (values.price) params.set('price', values.price);
+    if (values.minMileage) params.set('minMileage', values.minMileage);
+    if (values.maxMileage) params.set('maxMileage', values.maxMileage);
+
+    router.push(`${pathname}?${params.toString()}`);
   };
 
   const handleClear = () => {
     reset(defaultSearchValues);
     // empty object -> parent makes a request without query parameters -> default directory
-    onSearch({});
+    router.push(pathname); // without query -> default catalog
   };
 
   return (
     <form className={css.form} onSubmit={handleSubmit(onSubmit)} noValidate>
       <label className={css.field}>
         Car brand
-        <select
-          className={css.select}
-          disabled={isLoading}
-          {...register('brand')}
-        >
+        <select className={css.select} {...register('brand')}>
           <option value="">Choose a brand</option>
 
           {filtersData?.brands.map(brand => (
@@ -74,11 +77,7 @@ function Searchbar({ onSearch }: SearchBarProps) {
       </label>
 
       <label className={css.field}>
-        <select
-          className={css.select}
-          disabled={isLoading}
-          {...register('price')}
-        >
+        <select className={css.select} {...register('price')}>
           <option value="">Price/1 hour</option>
           {priceOptions.map(price => (
             <option key={price} value={price}>
