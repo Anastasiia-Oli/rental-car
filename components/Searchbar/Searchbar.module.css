@@ -15,6 +15,8 @@
   font-size: 12px;
   line-height: 133%;
   color: var(--gray);
+
+  position: relative;
 }
 
 .select {
@@ -26,10 +28,26 @@
   border: none;
   cursor: pointer;
 
+  /* styles for plaseholders */
   font-weight: 500;
   font-size: 16px;
   line-height: 125%;
   color: var(--main);
+
+  /* styles for select list */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.arrow {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+}
+
+.select:active {
+  border: none;
 }
 
 .mileageGroup {

@@ -74,6 +74,9 @@ function Searchbar({ filtersData }: SearchBarProps) {
             </option>
           ))}
         </select>
+        <svg className={css.arrow} width="16" height="16">
+          <use href="/sprite.svg#icon-down" />
+        </svg>
       </label>
 
       <label className={css.field}>
@@ -86,6 +89,9 @@ function Searchbar({ filtersData }: SearchBarProps) {
             </option>
           ))}
         </select>
+        <svg className={css.arrow} width="16" height="16">
+          <use href="/sprite.svg#icon-down" />
+        </svg>
       </label>
 
       <label className={css.mileageGroup}>
