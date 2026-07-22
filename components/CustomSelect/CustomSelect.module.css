@@ -1,0 +1,61 @@
+/* CustomSelect.module.css */
+.trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  padding: 12px 16px;
+  background: #101828; /* тёмно-синий фон как в макете */
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.trigger[data-placeholder] {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.icon {
+  display: flex;
+  transition: transform 0.2s ease;
+}
+
+.trigger[data-state='open'] .icon {
+  transform: rotate(180deg);
+}
+
+.content {
+  background: #101828;
+  border-radius: 12px;
+  overflow: hidden;
+  width: var(--radix-select-trigger-width);
+  z-index: 50;
+}
+
+.viewport {
+  padding: 4px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+}
+
+.item[data-highlighted] {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.indicator {
+  display: flex;
+}
