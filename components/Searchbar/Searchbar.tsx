@@ -1,9 +1,8 @@
 'use client';
 
 import { useMemo } from 'react';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useQuery } from '@tanstack/react-query';
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 
 import {
@@ -13,6 +12,7 @@ import {
 } from '@/schemas/searchSchema';
 import { buildPriceOptions } from '@/utils/mapSearchValues';
 import type { FiltersResponse } from '@/types/filters.types';
+import CustomSelect from '../CustomSelect/CustomSelect';
 import css from './Searchbar.module.css';
 
 interface SearchBarProps {
@@ -25,6 +25,7 @@ function Searchbar({ filtersData }: SearchBarProps) {
   const searchParams = useSearchParams();
 
   const {
+    control,
     register,
     handleSubmit,
     reset,
@@ -63,36 +64,38 @@ function Searchbar({ filtersData }: SearchBarProps) {
 
   return (
     <form className={css.form} onSubmit={handleSubmit(onSubmit)} noValidate>
-      <label className={css.field}>
+      <div className={css.field}>
         Car brand
-        <select className={css.select} {...register('brand')}>
-          <option value="">Choose a brand</option>
+        <Controller
+          name="brand"
+          control={control}
+          render={({ field }) => (
+            <CustomSelect
+              value={field.value ?? ''}
+              onValueChange={field.onChange}
+              placeholder="Choose a brand"
+              options={filtersData.brands}
+            />
+          )}
+        />
+      </div>
 
-          {filtersData?.brands.map(brand => (
-            <option key={brand} value={brand}>
-              {brand}
-            </option>
-          ))}
-        </select>
-        <svg className={css.arrow} width="16" height="16">
-          <use href="/sprite.svg#icon-down" />
-        </svg>
-      </label>
-
-      <label className={css.field}>
+      <div className={css.field}>
         Price / 1 hour
-        <select className={css.select} {...register('price')}>
-          <option value="">Choose a price</option>
-          {priceOptions.map(price => (
-            <option key={price} value={price}>
-              To ${price}
-            </option>
-          ))}
-        </select>
-        <svg className={css.arrow} width="16" height="16">
-          <use href="/sprite.svg#icon-down" />
-        </svg>
-      </label>
+        <Controller
+          name="price"
+          control={control}
+          render={({ field }) => (
+            <CustomSelect
+              value={field.value ?? ''}
+              onValueChange={field.onChange}
+              placeholder="Choose a price"
+              options={priceOptions}
+              formatLabel={price => `To $${price}`}
+            />
+          )}
+        />
+      </div>
 
       <label className={css.mileageGroup}>
         Car mileage / km

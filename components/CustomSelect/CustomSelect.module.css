@@ -1,25 +1,27 @@
-/* CustomSelect.module.css */
 .trigger {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  width: 100%;
+  width: 204px;
+  height: 44px;
   padding: 12px 16px;
-  background: #101828; /* тёмно-синий фон как в макете */
-  color: #fff;
+  background: #fff;
+  color: #101828;
   border: none;
   border-radius: 12px;
   font-size: 16px;
+  font-weight: 500;
   cursor: pointer;
 }
 
 .trigger[data-placeholder] {
-  color: rgba(255, 255, 255, 0.6);
+  color: #101828;
 }
 
 .icon {
   display: flex;
+  color: #101828;
   transition: transform 0.2s ease;
 }
 
@@ -28,34 +30,43 @@
 }
 
 .content {
-  background: #101828;
+  background: #fff;
   border-radius: 12px;
-  overflow: hidden;
+  box-shadow: 0px 12px 24px rgba(16, 24, 40, 0.08);
   width: var(--radix-select-trigger-width);
   z-index: 50;
 }
 
 .viewport {
-  padding: 4px;
+  padding: 8px;
+  max-height: 320px;
+}
+
+.viewport::-webkit-scrollbar {
+  width: 4px;
+}
+
+.viewport::-webkit-scrollbar-thumb {
+  background: #d0d5dd;
+  border-radius: 999px;
 }
 
 .item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 12px;
+  padding: 10px 8px;
   border-radius: 8px;
-  color: #fff;
-  font-size: 15px;
+  color: #667085;
+  font-size: 16px;
   cursor: pointer;
   outline: none;
   user-select: none;
 }
 
 .item[data-highlighted] {
-  background: rgba(255, 255, 255, 0.1);
+  background: #f9fafb;
+  color: #101828;
 }
 
-.indicator {
-  display: flex;
+.item[data-state='checked'] {
+  color: #101828;
+  font-weight: 600;
 }

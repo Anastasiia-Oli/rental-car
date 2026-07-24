@@ -3,21 +3,21 @@
 import * as Select from '@radix-ui/react-select';
 import css from './CustomSelect.module.css';
 
-interface CustomSelectProps {
+interface CustomSelectProps<T extends string | number> {
   value: string;
   onValueChange: (value: string) => void;
   placeholder: string;
-  options: string[];
-  formatLabel?: (option: string) => string;
+  options: T[];
+  formatLabel?: (option: T) => string;
 }
 
-export default function CustomSelect({
+export default function CustomSelect<T extends string | number>({
   value,
   onValueChange,
   placeholder,
   options,
   formatLabel,
-}: CustomSelectProps) {
+}: CustomSelectProps<T>) {
   return (
     <Select.Root value={value} onValueChange={onValueChange}>
       <Select.Trigger className={css.trigger} aria-label={placeholder}>
@@ -37,7 +37,11 @@ export default function CustomSelect({
         >
           <Select.Viewport className={css.viewport}>
             {options.map(option => (
-              <Select.Item key={option} value={option} className={css.item}>
+              <Select.Item
+                key={option}
+                value={String(option)}
+                className={css.item}
+              >
                 <Select.ItemText>
                   {formatLabel ? formatLabel(option) : option}
                 </Select.ItemText>
