@@ -19,37 +19,6 @@
   position: relative;
 }
 
-.select {
-  border-radius: 12px;
-  padding: 12px 16px;
-  width: 204px;
-  height: 44px;
-  background: var(--white);
-  border: none;
-  cursor: pointer;
-
-  /* styles for plaseholders */
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 125%;
-  color: var(--main);
-
-  /* styles for select list */
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-}
-
-.arrow {
-  position: absolute;
-  right: 16px;
-  top: 50%;
-}
-
-.select:active {
-  border: none;
-}
-
 .mileageGroup {
   display: flex;
   flex-direction: column;
@@ -59,8 +28,11 @@
   color: var(--gray);
 }
 
+.mileageContainer {
+  margin-top: 8px;
+}
+
 .mileageInputFrom {
-  border-right: 1px solid var(--gray-light);
   border-radius: 12px 0 0 12px;
   width: 160px;
   height: 44px;
@@ -78,6 +50,15 @@
 .mileageInputFrom::placeholder,
 .mileageInputTo::placeholder {
   color: var(--main);
+}
+
+.mileageInputFrom:focus,
+.mileageInputFrom:active,
+.mileageInputFrom:hover,
+.mileageInputTo:focus,
+.mileageInputTo:active,
+.mileageInputTo:hover {
+  outline: none;
 }
 
 .mileageInputTo {

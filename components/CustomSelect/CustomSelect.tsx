@@ -11,7 +11,7 @@ interface CustomSelectProps<T extends string | number> {
   formatLabel?: (option: T) => string;
 }
 
-export default function CustomSelect<T extends string | number>({
+function CustomSelect<T extends string | number>({
   value,
   onValueChange,
   placeholder,
@@ -53,3 +53,5 @@ export default function CustomSelect<T extends string | number>({
     </Select.Root>
   );
 }
+
+export default CustomSelect;

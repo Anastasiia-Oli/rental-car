@@ -13,6 +13,13 @@
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
+  margin-top: 8px;
+}
+
+.trigger:hover,
+.trigger:focus,
+.trigger:active {
+  outline: none;
 }
 
 .trigger[data-placeholder] {
@@ -37,16 +44,27 @@
   z-index: 50;
 }
 
-.viewport {
+.viewport,
+.viewport[data-radix-select-viewport] {
   padding: 8px;
   max-height: 320px;
+  overflow-y: auto;
+
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: #d0d5dd transparent;
 }
 
-.viewport::-webkit-scrollbar {
-  width: 4px;
+.viewport[data-radix-select-viewport]::-webkit-scrollbar {
+  display: block;
+  width: 8px;
 }
 
-.viewport::-webkit-scrollbar-thumb {
+.viewport[data-radix-select-viewport]::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.viewport[data-radix-select-viewport]::-webkit-scrollbar-thumb {
   background: #d0d5dd;
   border-radius: 999px;
 }
