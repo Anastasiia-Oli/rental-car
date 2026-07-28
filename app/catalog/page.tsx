@@ -36,7 +36,7 @@ async function CatalogPage({ searchParams }: CatalogPageProps) {
   return (
     <div className={css.container}>
       <Searchbar filtersData={filtersData} />
-      <CarList initialData={carsData} cars={carsData.cars} />
+      <CarList initialData={carsData} filters={filters} />
     </div>
   );
 }

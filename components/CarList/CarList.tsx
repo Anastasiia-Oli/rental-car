@@ -1,32 +1,36 @@
+'use client';
+
+import { CarFilters, GetCarsResponse } from '@/types/filters.types';
 import css from './CarList.module.css';
-import type { Car } from '@/types/filters.types';
 import { useQuery } from '@tanstack/react-query';
 import { getCars } from '@/lib/api';
-import Link from 'next/link';
+import CarCard from '@/components/CarCard/CarCard';
 
-type CarListProps = {
-  cars: Car[];
-};
+interface CarListProps {
+  initialData: GetCarsResponse;
+  filters: CarFilters;
+}
 
-function CarList({ cars }: CarListProps) {
+function CarList({ initialData, filters }: CarListProps) {
+  const { data } = useQuery({
+    queryKey: ['cars', filters],
+    queryFn: () => getCars(filters),
+    initialData,
+  });
+
+  if (data.cars.length === 0) {
+    return (
+      <p className={css.noResults}>
+        No cars found matching the selected filters.
+      </p>
+    );
+  }
+
   return (
     <ul className={css.list}>
-      {cars.map(car => (
+      {data.cars.map(car => (
         <li className={css.listItem} key={car.id}>
-          <div className={css.titleContainer}>
-            <h2 className={css.title}>
-              {car.brand} <span className={css.model}>{car.model}</span>,{' '}
-              {car.year}
-            </h2>
-            <div className={css.price}>{car.rentalPrice}</div>
-          </div>
-          <div className={css.detailsContainer}>
-            {car.location.city} {car.location.country} {car.rentalCompany}{' '}
-            {car.type} {car.mileage}km
-          </div>
-          <Link href={`/catalog/${car.id}`} className={css.detailsBtn}>
-            Read more
-          </Link>
+          <CarCard car={car} />
         </li>
       ))}
     </ul>
