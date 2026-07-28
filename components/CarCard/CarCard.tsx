@@ -26,7 +26,7 @@ function CarCard({ car }: CarCardProps) {
         <p className={css.title}>
           {car.brand} <span className={css.model}>{car.model}</span>, {car.year}
         </p>
-        <p className={css.price}>{car.rentalPrice}</p>
+        <p className={css.price}>${car.rentalPrice}</p>
       </div>
 
       <div className={css.meta}>
