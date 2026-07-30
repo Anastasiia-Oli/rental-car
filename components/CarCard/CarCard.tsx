@@ -23,7 +23,10 @@ function CarCard({ car }: CarCardProps) {
       />
 
       <div className={css.titleContainer}>
-        <p className={css.title}>
+        <p
+          className={css.title}
+          title={`${car.brand} ${car.model}, ${car.year}`}
+        >
           {car.brand} <span className={css.model}>{car.model}</span>, {car.year}
         </p>
         <p className={css.price}>${car.rentalPrice}</p>
@@ -31,10 +34,13 @@ function CarCard({ car }: CarCardProps) {
 
       <div className={css.meta}>
         <p className={css.metaLine}>
-          {car.location.city} | {car.location.country}| {car.rentalCompany} |
+          <span>{car.location.city}</span>
+          <span>{car.location.country}</span>
+          <span>{car.rentalCompany}</span>
         </p>
         <p className={css.metaLine}>
-          {car.type} | {formatMileage(car.mileage)} km
+          <span>{car.type}</span>
+          <span>{formatMileage(car.mileage)} km</span>
         </p>
       </div>
 

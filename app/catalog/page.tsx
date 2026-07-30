@@ -29,7 +29,7 @@ async function CatalogPage({ searchParams }: CatalogPageProps) {
   };
 
   const [carsData, filtersData] = await Promise.all([
-    getCars(filters),
+    getCars(filters, 1),
     getFilters(),
   ]);
 

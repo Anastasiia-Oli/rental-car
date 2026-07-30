@@ -3,6 +3,7 @@ import type { CarBrand } from '@/types/car';
 import type { CarFilters, GetCarsResponse } from '@/types/filters.types';
 
 const BASE_URL = 'https://car-rental-api.goit.study';
+export const CARS_PER_PAGE = 12;
 
 export interface FiltersResponse {
   brands: CarBrand[];
@@ -25,11 +26,16 @@ export async function getFilters(): Promise<FiltersResponse> {
   return response.data;
 }
 
-export async function getCars(filters: CarFilters): Promise<GetCarsResponse> {
+export async function getCars(
+  filters: CarFilters,
+  page = 1
+): Promise<GetCarsResponse> {
   const response = await axios.get<GetCarsResponse>(`${BASE_URL}/cars`, {
     params: {
       ...filters, // brand, price, minMileage, maxMileage — only filled out
       // perPage / page  - later when i get to pagination
+      page,
+      perPage: 12,
     },
   });
   return response.data;

@@ -10,6 +10,8 @@
   border-radius: 14px;
   width: 244px;
   height: 268px;
+  object-fit: cover;
+  object-position: center;
 }
 
 .titleContainer {
@@ -23,10 +25,17 @@
 }
 
 .title {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .model {
   color: var(--button);
+}
+
+.price {
+  margin-left: 16px;
 }
 
 .meta {
@@ -41,17 +50,29 @@
   line-height: 133%;
 
   margin-top: 8px;
+
+  overflow-y: auto;
 }
 
 .metaLine {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.metaLine span:not(:last-child)::after {
+  content: '';
+  display: inline-block;
+  width: 1px;
+  height: 16px;
+  background-color: var(--gray-light);
+  margin: 0 6px;
+  vertical-align: middle;
 }
 
 .button {
   display: flex;
   border-radius: 12px;
   padding: 12px 81px;
-  /* width: 244px;
-  height: 44px; */
   background-color: var(--button);
 
   transition: background-color 250ms ease;
