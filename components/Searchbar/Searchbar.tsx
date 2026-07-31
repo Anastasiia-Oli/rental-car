@@ -30,6 +30,7 @@ function Searchbar({ filtersData }: SearchBarProps) {
     handleSubmit,
     reset,
     formState: { errors },
+    getValues,
   } = useForm<SearchSchemaType>({
     resolver: zodResolver(searchSchema),
     defaultValues: {
@@ -39,6 +40,8 @@ function Searchbar({ filtersData }: SearchBarProps) {
       maxMileage: searchParams.get('maxMileage') ?? '',
     },
   });
+
+  console.log('errors:', errors);
 
   const priceOptions = useMemo(
     () => buildPriceOptions(filtersData.price.min, filtersData.price.max, 10),
@@ -54,11 +57,13 @@ function Searchbar({ filtersData }: SearchBarProps) {
     if (values.maxMileage) params.set('maxMileage', values.maxMileage);
 
     router.push(`${pathname}?${params.toString()}`);
+    console.log('Search submitted with values:', values);
   };
 
   const handleClear = () => {
     reset(defaultSearchValues);
     // empty object -> parent makes a request without query parameters -> default directory
+    console.log('after reset, getValues():', getValues());
     router.push(pathname); // without query -> default catalog
   };
 

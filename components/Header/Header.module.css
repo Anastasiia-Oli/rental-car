@@ -26,6 +26,13 @@
 .logo {
   padding-top: 24px;
   padding-bottom: 24px;
+  outline: none;
+}
+
+.logo:hover,
+.logo:focus,
+.logo:active {
+  outline: none;
 }
 
 .navigation {
