@@ -4,6 +4,7 @@ import { getCars, getFilters } from '@/lib/api';
 import type { CarFilters } from '@/types/filters.types';
 import css from './page.module.css';
 import CarList from '@/components/CarList/CarList';
+import ScrollToTopButton from '@/components/ScrollToTopButton/ScrollToTopButton';
 
 interface CatalogPageProps {
   searchParams: Promise<{
@@ -37,6 +38,7 @@ async function CatalogPage({ searchParams }: CatalogPageProps) {
     <div className={css.container}>
       <Searchbar filtersData={filtersData} />
       <CarList initialData={carsData} filters={filters} />
+      <ScrollToTopButton />
     </div>
   );
 }
