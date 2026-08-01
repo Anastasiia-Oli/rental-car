@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
     ],
   },
   /* config options here */
-  reactCompiler: true,
+  // reactCompiler: true, disabled for now, as it may cause issues with form inputs
 };
 
 export default nextConfig;
