@@ -1,0 +1,139 @@
+.wrapper {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 32px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 8px;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: var(--gray);
+  margin: 0 0 24px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.field {
+  position: relative;
+}
+
+/* .label {
+  display: none;
+} */
+
+.inputWrapper {
+  position: relative;
+}
+
+.input,
+.textarea {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 12px;
+  padding: 14px 20px;
+  font-size: 16px;
+  color: var(--main);
+  background: var(--bg);
+  outline: none;
+  font-family: inherit;
+  border: 1px solid transparent;
+}
+
+.textarea {
+  resize: none;
+  overflow-y: auto;
+}
+
+/* .input::placeholder,
+.textarea::placeholder {
+  color: var(--gray);
+} */
+
+/* .input:focus,
+.textarea:focus {
+  border-color: var(--main);
+} */
+
+.label {
+  position: absolute;
+  left: 16px;
+  top: 14px;
+  font-size: 14px;
+  color: var(--gray);
+  pointer-events: none;
+  transition:
+    top 0.15s ease,
+    font-size 0.15s ease,
+    color 0.15s ease;
+  /* background: transparent; */
+  padding: 0 4px;
+}
+
+.input:focus + .label,
+.input:not(:placeholder-shown) + .label,
+.textarea:focus + .label,
+.textarea:not(:placeholder-shown) + .label {
+  top: -8px;
+  font-size: 11px;
+  color: var(--main);
+  background: var(--white);
+  border-radius: 4px;
+}
+
+.input.inputError + .label,
+.textarea.inputError + .label {
+  color: var(--error);
+  background: var(--error-light);
+}
+
+.inputError {
+  background: var(--error-light);
+  border: 1px solid var(--error);
+}
+
+.errorIcon {
+  position: absolute;
+  top: 16px;
+  right: 14px;
+  width: 20px;
+  height: 20px;
+}
+
+.errorText {
+  font-size: 12px;
+  color: var(--error);
+  margin: 0;
+}
+
+.submitButton {
+  border: none;
+  border-radius: 12px;
+  padding: 14px;
+  background: var(--button);
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: background-color 250ms ease;
+}
+
+.submitButton:hover,
+.submitButton:focus {
+  background-color: var(--button-hover);
+}
+
+.submitButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
