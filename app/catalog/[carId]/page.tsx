@@ -14,7 +14,9 @@ export default async function DetailsPage({ params }: DetailsPageProps) {
   try {
     const response = await getCarById(carId);
     car = response;
-  } catch {
+  } catch (error) {
+    console.error('[DetailsPage] getCarById failed', error);
+    console.log('params:', params);
     notFound();
   }
 
