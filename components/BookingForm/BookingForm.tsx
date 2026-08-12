@@ -3,6 +3,7 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import { toast } from 'sonner';
 import css from './BookingForm.module.css';
 import { useMutation } from '@tanstack/react-query';
 import { createBooking } from '@/lib/api';
@@ -44,12 +45,12 @@ export default function BookingForm({ carId }: BookingFormProps) {
 
   const onSubmit = async (data: BookingFormValues) => {
     try {
-      console.log('[onSubmit] form data', data);
-      await mutateAsync(data);
+      const response = await mutateAsync(data);
       reset();
-    } catch (error) {
-      console.error(error);
-      console.error('[onSubmit] booking failed', error);
+
+      toast.success(response.message ?? 'Booking request sent!');
+    } catch {
+      toast.error('Something went wrong. Please try again later.');
     }
   };
 

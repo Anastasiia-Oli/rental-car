@@ -20,12 +20,7 @@ interface BookingRequestPayload {
 }
 
 interface BookingResponse {
-  id: string;
-  carId: string;
-  name: string;
-  email: string;
-  comment: string;
-  createdAt: string;
+  message: string;
 }
 
 // export interface FetchCarsResponse {
