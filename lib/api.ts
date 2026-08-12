@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { CarBrand } from '@/types/car';
+import type { CarBrand, Car } from '@/types/car';
 import type { CarFilters, GetCarsResponse } from '@/types/filters.types';
 
 const BASE_URL = 'https://car-rental-api.goit.study';
@@ -11,6 +11,21 @@ export interface FiltersResponse {
     min: number;
     max: number;
   };
+}
+
+interface BookingRequestPayload {
+  name: string;
+  email: string;
+  comment: string;
+}
+
+interface BookingResponse {
+  id: string;
+  carId: string;
+  name: string;
+  email: string;
+  comment: string;
+  createdAt: string;
 }
 
 // export interface FetchCarsResponse {
@@ -38,5 +53,23 @@ export async function getCars(
       perPage: 12,
     },
   });
+  return response.data;
+}
+
+export async function getCarById(carId: string): Promise<Car> {
+  const response = await axios.get<Car>(`${BASE_URL}/cars/${carId}`);
+  return response.data;
+}
+
+export async function createBooking(
+  carId: string,
+  payload: BookingRequestPayload
+): Promise<BookingResponse> {
+  console.log('[createBooking] request →', { carId, payload });
+  const response = await axios.post<BookingResponse>(
+    `${BASE_URL}/cars/${carId}/booking-requests`,
+    payload
+  );
+  console.log('[createBooking] response ←', response.status, response.data);
   return response.data;
 }

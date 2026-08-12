@@ -35,7 +35,7 @@ export interface Car {
   type: string;
   img: string;
   description: string;
-  fuelConsumption: number;
+  fuelConsumption: string;
   engine: string;
   rentalPrice: string;
   rentalCompany: string;
@@ -44,6 +44,6 @@ export interface Car {
   stockNumber: number;
   features: string[];
   location: Location;
-  createdAt: string;
-  updatedAt: string;
+  createdAt?: string;
+  updatedAt?: string;
 }

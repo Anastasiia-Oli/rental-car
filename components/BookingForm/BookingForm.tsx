@@ -4,6 +4,8 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import css from './BookingForm.module.css';
+import { useMutation } from '@tanstack/react-query';
+import { createBooking } from '@/lib/api';
 
 const bookingFormSchema = z.object({
   name: z
@@ -36,10 +38,19 @@ export default function BookingForm({ carId }: BookingFormProps) {
     mode: 'onSubmit',
   });
 
+  const { mutateAsync, isPending } = useMutation({
+    mutationFn: (data: BookingFormValues) => createBooking(carId, data),
+  });
+
   const onSubmit = async (data: BookingFormValues) => {
-    // TODO: заменить на вызов из api-файла, например sendBookingRequest(carId, data)
-    console.log(carId, data);
-    reset();
+    try {
+      console.log('[onSubmit] form data', data);
+      await mutateAsync(data);
+      reset();
+    } catch (error) {
+      console.error(error);
+      console.error('[onSubmit] booking failed', error);
+    }
   };
 
   return (
@@ -137,7 +148,7 @@ export default function BookingForm({ carId }: BookingFormProps) {
         <button
           type="submit"
           className={css.submitButton}
-          disabled={isSubmitting}
+          disabled={isSubmitting || isPending}
         >
           Send
         </button>
