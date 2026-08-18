@@ -6,6 +6,9 @@ import css from './CarList.module.css';
 import { getCars } from '@/lib/api';
 import CarCard from '@/components/CarCard/CarCard';
 import { useInfiniteQuery } from '@tanstack/react-query';
+// import { notFound } from 'next/navigation';
+import Image from 'next/image';
+import Link from 'next/link';
 
 interface CarListProps {
   initialData: GetCarsResponse;
@@ -29,10 +32,23 @@ function CarList({ initialData, filters }: CarListProps) {
   const cars = data.pages.flatMap(page => page.cars);
 
   if (cars.length === 0) {
+    // notFound();
     return (
-      <p className={css.noResults}>
-        No cars found matching the selected filters.
-      </p>
+      <div className={css.noResultsContainer}>
+        <Image
+          className={css.noResultsImage}
+          src="/not-found@1x.webp"
+          alt="No results"
+          width={414}
+          height={388}
+        />
+        <h2 className={css.noResultsTitle}>No cars found</h2>
+        <p className={css.noResultsDetails}>
+          We couldn&apos;t find any cars that match your current filters. Try
+          adjusting your search criteria, or use the &quot;Clear filters&quot;
+          button above to reset them.
+        </p>
+      </div>
     );
   }
 
