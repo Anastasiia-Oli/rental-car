@@ -1,6 +1,96 @@
 .container {
-  margin-top: 180px;
   margin-left: auto;
   margin-right: auto;
   display: flex;
+  gap: 32px;
+  padding: 120px;
+}
+
+.gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.image {
+  border-radius: 16px;
+}
+
+.details {
+  border-radius: 16px;
+  padding: 32px 24px;
+  background: var(--white);
+}
+
+.titleContainer {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 133%;
+}
+
+.article {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--gray);
+}
+
+.location {
+  font-size: 16px;
+  line-height: 125%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.locationIcon {
+  margin-right: 4px;
+}
+
+.price {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 133%;
+  color: var(--button);
+  margin-bottom: 32px;
+}
+
+.description {
+  margin-bottom: 68px;
+}
+
+.detailTitle {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 120%;
+  margin-bottom: 20px;
+}
+
+.detailList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.detailList:not(:last-child) {
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--gray-light);
+  padding-bottom: 24px;
+}
+
+.detailListItem {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  margin-right: 8px;
 }

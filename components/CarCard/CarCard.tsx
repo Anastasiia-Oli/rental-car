@@ -44,7 +44,12 @@ function CarCard({ car }: CarCardProps) {
         </p>
       </div>
 
-      <Link href={`/catalog/${car.id}`} className={css.button}>
+      <Link
+        target="_blank"
+        rel="noopener noreferrer"
+        href={`/catalog/${car.id}`}
+        className={css.button}
+      >
         Read more
       </Link>
     </div>
