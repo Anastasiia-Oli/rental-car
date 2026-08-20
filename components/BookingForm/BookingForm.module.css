@@ -26,10 +26,6 @@
   position: relative;
 }
 
-/* .label {
-  display: none;
-} */
-
 .inputWrapper {
   position: relative;
 }
@@ -54,16 +50,6 @@
   overflow-y: auto;
 }
 
-/* .input::placeholder,
-.textarea::placeholder {
-  color: var(--gray);
-} */
-
-/* .input:focus,
-.textarea:focus {
-  border-color: var(--main);
-} */
-
 .label {
   position: absolute;
   left: 16px;
@@ -75,7 +61,6 @@
     top 0.15s ease,
     font-size 0.15s ease,
     color 0.15s ease;
-  /* background: transparent; */
   padding: 0 4px;
 }
 
@@ -119,7 +104,7 @@
   border: none;
   border-radius: 12px;
   padding: 14px;
-  background: var(--button);
+  background: var(--light-blue);
   color: var(--white);
   font-size: 14px;
   font-weight: 600;
@@ -130,7 +115,7 @@
 
 .submitButton:hover,
 .submitButton:focus {
-  background-color: var(--button-hover);
+  background-color: var(--dark-blue);
 }
 
 .submitButton:disabled {

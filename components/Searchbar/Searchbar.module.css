@@ -84,7 +84,7 @@
   padding: 12px 51px;
   width: 156px;
   height: 44px;
-  background-color: var(--button);
+  background-color: var(--light-blue);
   border: none;
   cursor: pointer;
 
@@ -116,7 +116,7 @@
 }
 
 .searchButton:hover {
-  background-color: var(--button-hover);
+  background-color: var(--dark-blue);
 }
 
 .clearButton:hover {

@@ -1,5 +1,7 @@
 import css from './page.module.css';
 import type { Metadata } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Page was not found',
@@ -21,11 +23,21 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <div>
-      <h1 className={css.title}>404 - Page not found</h1>
-      <p className={css.description}>
+    <div className={css.notContainer}>
+      <Image
+        className={css.notImage}
+        src="/not-found@1x.webp"
+        alt="No results"
+        width={414}
+        height={388}
+      />
+      <h1 className={css.notTitle}>404 - Page not found</h1>
+      <p className={css.notDescription}>
         Sorry, the page you are looking for does not exist.
       </p>
+      <Link href="/catalog" className={css.notButton}>
+        Back to Catalog
+      </Link>
     </div>
   );
 }

@@ -42,18 +42,15 @@
 }
 
 .navigation li a:hover {
-  color: var(--button-hover);
+  color: var(--dark-blue);
 }
 
 .active {
-  color: var(--button);
+  color: var(--light-blue);
   text-decoration: underline;
   display: flex;
   padding-top: 24px;
   padding-bottom: 24px;
-}
-
-.li {
 }
 
 .link {

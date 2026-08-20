@@ -6,8 +6,8 @@
   width: 204px;
   height: 44px;
   padding: 12px 16px;
-  background: #fff;
-  color: #101828;
+  background: var(--white);
+  color: var(--main);
   border: none;
   border-radius: 12px;
   font-size: 16px;
@@ -23,12 +23,12 @@
 }
 
 .trigger[data-placeholder] {
-  color: #101828;
+  color: var(--main);
 }
 
 .icon {
   display: flex;
-  color: #101828;
+  color: var(--main);
   transition: transform 0.2s ease;
 }
 
@@ -37,7 +37,7 @@
 }
 
 .content {
-  background: #fff;
+  background: var(--white);
   border-radius: 12px;
   box-shadow: 0px 12px 24px rgba(16, 24, 40, 0.08);
   width: var(--radix-select-trigger-width);
@@ -85,6 +85,6 @@
 }
 
 .item[data-state='checked'] {
-  color: #101828;
+  color: var(--main);
   font-weight: 600;
 }

@@ -5,7 +5,7 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background-color: var(--button);
+  background-color: var(--light-blue);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -19,9 +19,9 @@
 
 .button:hover,
 .button:focus {
-  background-color: var(--button-hover);
+  background-color: var(--dark-blue);
 }
 
 .icon {
-  fill: #fff;
+  fill: var(--white);
 }

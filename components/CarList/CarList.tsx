@@ -2,13 +2,10 @@
 
 import { CarFilters, GetCarsResponse } from '@/types/filters.types';
 import css from './CarList.module.css';
-// import { useQuery } from '@tanstack/react-query';
 import { getCars } from '@/lib/api';
 import CarCard from '@/components/CarCard/CarCard';
 import { useInfiniteQuery } from '@tanstack/react-query';
-// import { notFound } from 'next/navigation';
 import Image from 'next/image';
-import Link from 'next/link';
 
 interface CarListProps {
   initialData: GetCarsResponse;
@@ -32,7 +29,6 @@ function CarList({ initialData, filters }: CarListProps) {
   const cars = data.pages.flatMap(page => page.cars);
 
   if (cars.length === 0) {
-    // notFound();
     return (
       <div className={css.noResultsContainer}>
         <Image
