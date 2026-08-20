@@ -16,7 +16,26 @@ interface CatalogPageProps {
 }
 
 export const metadata: Metadata = {
-  title: 'RentalCar',
+  title: 'Catalog',
+  description:
+    'Browse our full catalog of rental cars. Filter by brand, price, and mileage to find the perfect car for your trip.',
+  openGraph: {
+    title: 'Catalog | RentalCar',
+    description:
+      'Browse our full catalog of rental cars. Filter by brand, price, and mileage to find the perfect car for your trip.',
+    url: '/catalog', //change after deployment
+    images: [
+      {
+        url: '/home-pic@1x.webp',
+        width: 1200,
+        height: 630,
+        alt: 'RentalCar catalog',
+      },
+    ],
+  },
+  alternates: {
+    canonical: '/catalog',
+  },
 };
 
 async function CatalogPage({ searchParams }: CatalogPageProps) {

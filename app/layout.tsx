@@ -11,7 +11,13 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: 'RentalCar',
+  metadataBase: new URL('https://твой-домен.vercel.app'), // подставь реальный домен после деплоя
+  title: {
+    default: 'RentalCar',
+    template: '%s | RentalCar',
+  },
+  description:
+    'Rent a car online — browse our catalog, compare brands and prices, and book in minutes.',
 };
 
 export default function RootLayout({
@@ -25,7 +31,7 @@ export default function RootLayout({
         <TanStackProvider>
           <Header />
           {children}
-          <Toaster position='top-right' richColors/>
+          <Toaster position="top-right" richColors />
         </TanStackProvider>
       </body>
     </html>

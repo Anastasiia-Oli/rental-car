@@ -3,9 +3,45 @@ import BookingForm from '@/components/BookingForm/BookingForm';
 import { getCarById } from '@/lib/api';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
+import type { Metadata } from 'next';
 
 interface DetailsPageProps {
   params: Promise<{ carId: string }>;
+}
+
+export async function generateMetadata({
+  params,
+}: DetailsPageProps): Promise<Metadata> {
+  const { carId } = await params;
+
+  try {
+    const car = await getCarById(carId);
+    const title = `${car.brand} ${car.model}, ${car.year}`;
+    const description = `Rent a ${car.brand} ${car.model} from $${car.rentalPrice}/hour in ${car.location.city}, ${car.location.country}.`;
+
+    return {
+      title,
+      description,
+      openGraph: {
+        title,
+        description,
+        url: `https://YOUR-DOMAIN.vercel.app/catalog/${carId}`, // поменяй после деплоя
+        images: [
+          {
+            url: car.img,
+            width: 640,
+            height: 512,
+            alt: `${car.brand} ${car.model}`,
+          },
+        ],
+      },
+    };
+  } catch {
+    return {
+      title: 'Car not found | RentalCar',
+      description: 'Sorry, the car you are looking for does not exist.',
+    };
+  }
 }
 
 export default async function DetailsPage({ params }: DetailsPageProps) {

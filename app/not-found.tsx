@@ -9,13 +9,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Page was not found',
     description: 'Sorry, the page you are looking for does not exist.',
-    url: 'https://08-zustand-coral.vercel.app/not-found',
+    url: 'https://08-zustand-coral.vercel.app/not-found', //change after deployment
     images: [
       {
-        url: 'https://ac.goit.global/fullstack/react/notehub-og-meta.jpg',
+        url: '/not-found@1x.webp',
         width: 1200,
         height: 630,
-        alt: 'Note Hub',
+        alt: 'Rental Car',
       },
     ],
   },

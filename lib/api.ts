@@ -1,6 +1,7 @@
 import axios from 'axios';
 import type { CarBrand, Car } from '@/types/car';
 import type { CarFilters, GetCarsResponse } from '@/types/filters.types';
+import { cache } from 'react';
 
 const BASE_URL = 'https://car-rental-api.goit.study';
 export const CARS_PER_PAGE = 12;
@@ -42,20 +43,18 @@ export async function getCars(
   return response.data;
 }
 
-export async function getCarById(carId: string): Promise<Car> {
+export const getCarById = cache(async (carId: string): Promise<Car> => {
   const response = await axios.get<Car>(`${BASE_URL}/cars/${carId}`);
   return response.data;
-}
+});
 
 export async function createBooking(
   carId: string,
   payload: BookingRequestPayload
 ): Promise<BookingResponse> {
-  console.log('[createBooking] request →', { carId, payload });
   const response = await axios.post<BookingResponse>(
     `${BASE_URL}/cars/${carId}/booking-requests`,
     payload
   );
-  console.log('[createBooking] response ←', response.status, response.data);
   return response.data;
 }

@@ -1,5 +1,29 @@
 import css from './page.module.css';
 import Link from 'next/link';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Home',
+  description:
+    'Find your perfect rental car — reliable and budget-friendly rentals for any journey. Browse our catalog and book online.',
+  openGraph: {
+    title: 'RentalCar — Find your perfect rental car',
+    description:
+      'Reliable and budget-friendly rentals for any journey. Browse our catalog and book online.',
+    url: '/', //change after deployment
+    images: [
+      {
+        url: '/home-pic@1x.webp',
+        width: 1200,
+        height: 630,
+        alt: 'RentalCar',
+      },
+    ],
+  },
+  alternates: {
+    canonical: '/',
+  },
+};
 
 export default function Home() {
   return (
