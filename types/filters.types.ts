@@ -1,5 +1,5 @@
-// Итоговый объект фильтров, который уходит в API-запрос списка машин.
-// Поля опциональны: если не выбраны — просто не попадают в query.
+// The final filter object that is included in the API request for the list of machines.
+// Fields are optional: if not selected, they are simply not included in the query.
 export interface CarFilters {
   brand?: string;
   price?: number;
@@ -7,7 +7,7 @@ export interface CarFilters {
   maxMileage?: number;
 }
 
-// Ответ GET /filters
+// Answer GET /filters
 export interface FiltersResponse {
   brands: string[];
   price: {
@@ -16,7 +16,7 @@ export interface FiltersResponse {
   };
 }
 
-// Ответ GET /cars (используем только то, что нужно сейчас)
+// Answer GET /cars
 export interface Car {
   id: string;
   year: number;

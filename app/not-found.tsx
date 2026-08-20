@@ -24,13 +24,16 @@ export const metadata: Metadata = {
 export default function NotFound() {
   return (
     <div className={css.notContainer}>
-      <Image
-        className={css.notImage}
-        src="/not-found@1x.webp"
-        alt="No results"
-        width={414}
-        height={388}
-      />
+      <picture>
+        <source srcSet="/not-found@2x.webp 2x, /not-found@1x.webp 1x" />
+        <Image
+          className={css.notImage}
+          src="/not-found@1x.webp"
+          alt="No results"
+          width={414}
+          height={388}
+        />
+      </picture>
       <h1 className={css.notTitle}>404 - Page not found</h1>
       <p className={css.notDescription}>
         Sorry, the page you are looking for does not exist.

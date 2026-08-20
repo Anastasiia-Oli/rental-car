@@ -23,7 +23,7 @@ function ScrollToTopButton() {
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
       aria-label="Scroll to top"
     >
-      <svg className={css.icon} width="20" height="20">
+      <svg className={css.icon} width="20" height="20" aria-hidden="true">
         <use href="/sprite.svg#icon-up" />
       </svg>
     </button>

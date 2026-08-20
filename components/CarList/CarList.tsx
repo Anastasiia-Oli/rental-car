@@ -31,13 +31,16 @@ function CarList({ initialData, filters }: CarListProps) {
   if (cars.length === 0) {
     return (
       <div className={css.noResultsContainer}>
-        <Image
-          className={css.noResultsImage}
-          src="/not-found@1x.webp"
-          alt="No results"
-          width={414}
-          height={388}
-        />
+        <picture>
+          <source srcSet="/not-found@2x.webp 2x, /not-found@1x.webp 1x" />
+          <Image
+            className={css.noResultsImage}
+            src="/not-found@1x.webp"
+            alt="No results"
+            width={414}
+            height={388}
+          />
+        </picture>
         <h2 className={css.noResultsTitle}>No cars found</h2>
         <p className={css.noResultsDetails}>
           We couldn&apos;t find any cars that match your current filters. Try

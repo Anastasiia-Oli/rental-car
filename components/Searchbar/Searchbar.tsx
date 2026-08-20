@@ -24,18 +24,12 @@ function Searchbar({ filtersData }: SearchBarProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  console.log(
-    'RENDER Searchbar, searchParams minMileage:',
-    searchParams.get('minMileage')
-  );
-
   const {
     control,
     register,
     handleSubmit,
     reset,
     formState: { errors },
-    setValue,
   } = useForm<SearchSchemaType>({
     resolver: zodResolver(searchSchema),
     defaultValues: {
@@ -65,8 +59,6 @@ function Searchbar({ filtersData }: SearchBarProps) {
   const handleClear = () => {
     reset(defaultSearchValues);
     // empty object -> parent makes a request without query parameters -> default directory
-    // setValue('minMileage', '', { shouldValidate: false });
-    // setValue('maxMileage', '', { shouldValidate: false });
     router.push(pathname); // without query -> default catalog
   };
 

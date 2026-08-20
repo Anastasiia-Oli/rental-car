@@ -23,7 +23,7 @@ function CustomSelect<T extends string | number>({
       <Select.Trigger className={css.trigger} aria-label={placeholder}>
         <Select.Value placeholder={placeholder} />
         <Select.Icon className={css.icon}>
-          <svg width="16" height="16">
+          <svg width="16" height="16" aria-hidden="true">
             <use href="/sprite.svg#icon-down" />
           </svg>
         </Select.Icon>

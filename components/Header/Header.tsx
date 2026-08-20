@@ -33,7 +33,7 @@ function Header() {
       className={`${css.header} ${visible ? css.headerVisible : css.headerHidden}`}
     >
       <Link className={css.logo} href="/" aria-label="Home">
-        <svg width="104" height="16">
+        <svg width="104" height="16" aria-hidden="true">
           <use href="/sprite.svg#icon-logo" />
         </svg>
       </Link>

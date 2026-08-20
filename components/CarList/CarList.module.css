@@ -11,7 +11,7 @@
   margin: 0 auto 104px auto;
   padding: 12px 38px;
   background-color: var(--bg);
-  border: 1px solid var(--light-blue);
+  border: 2px solid var(--light-blue);
   border-radius: 12px;
   width: 160px;
   height: 44px;
@@ -21,12 +21,12 @@
   font-size: 16px;
   line-height: 125%;
 
-  transition: border 250ms ease;
+  transition: border-color 250ms ease;
 }
 
 .loadMore:hover,
 .loadMore:focus {
-  border: 1px solid var(--dark-blue);
+  border-color: var(--dark-blue);
 }
 
 .noResultsContainer {

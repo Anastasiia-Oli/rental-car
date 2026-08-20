@@ -23,14 +23,6 @@ interface BookingResponse {
   message: string;
 }
 
-// export interface FetchCarsResponse {
-//   cars: Car[];
-//   totalCars: number;
-//   totalPages: number;
-//   page: number;
-//   perPage: number;
-// }
-
 export async function getFilters(): Promise<FiltersResponse> {
   const response = await axios.get<FiltersResponse>(`${BASE_URL}/cars/filters`);
   return response.data;
@@ -43,7 +35,6 @@ export async function getCars(
   const response = await axios.get<GetCarsResponse>(`${BASE_URL}/cars`, {
     params: {
       ...filters, // brand, price, minMileage, maxMileage — only filled out
-      // perPage / page  - later when i get to pagination
       page,
       perPage: 12,
     },
